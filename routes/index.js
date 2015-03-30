@@ -7,5 +7,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Workshop' });
 });
 
+router.get('/themes', themes.list);
 router.post('/themes', themes.add);
 module.exports = router;

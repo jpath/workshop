@@ -1,4 +1,17 @@
 
+/*
+ * GET users listing.
+ */
+
+exports.list = function(req, res, next){
+  req.db.themes.find({completed: false}).toArray(function(error, themes){
+    if (error) return next(error);
+    res.render('themes', {
+      title: 'Themes',
+      themes: themes || []
+    });
+  });
+};
 exports.add = function(req, res, next){
   if (!req.body || !req.body.name) return next(new Error('No data provided.'));
   req.db.themes.save({
