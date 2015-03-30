@@ -22,12 +22,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
-
 // Mongo
 var mongo = require('mongoskin');
 var db = mongo.db("mongodb://localhost:27017/workshop", {native_parser:true});
+
+app.use(function(req, res, next) {
+  req.db = {};
+  req.db.themes = db.collection('themes');
+  req.db.activities = db.collection('activities');
+  console.log(req.db.themes);
+  next();
+});
+
+
+app.use('/', routes);
+app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
