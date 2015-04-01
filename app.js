@@ -30,7 +30,6 @@ app.use(function(req, res, next) {
   req.db = {};
   req.db.themes = db.collection('themes');
   req.db.activities = db.collection('activities');
-  console.log(req.db.themes);
   next();
 });
 

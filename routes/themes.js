@@ -1,10 +1,10 @@
 
 /*
- * GET users listing.
+ * GET themes listing.
  */
 
 exports.list = function(req, res, next){
-  req.db.themes.find({completed: false}).toArray(function(error, themes){
+  req.db.themes.find().toArray(function(error, themes){
     if (error) return next(error);
     res.render('themes', {
       title: 'Themes',
