@@ -3,7 +3,7 @@ exports.list = function(req, res, next){
   req.db.cues.find().toArray(function(error, cues){
     if (error) return next(error);
     res.render('cues', {
-      title: 'Themes',
+      title: 'Cues',
       cues: cues || []
     });
   });
