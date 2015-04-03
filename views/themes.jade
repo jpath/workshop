@@ -6,4 +6,5 @@ block content
   ul
     each theme in themes
       li 
-        = theme.name
+        a(href='/theme?_id=' + theme._id)
+          = theme.name

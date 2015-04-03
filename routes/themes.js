@@ -25,3 +25,12 @@ exports.add = function(req, res, next){
   })
 };
 
+exports.show = function(req, res, next){
+  if(!req.query || !req.query._id) return next(new Error('No id provided'));
+  req.db.themes.findById(req.query._id, function(err, theme) {
+    if(err) return next(err);
+    res.render('theme', {
+      theme: theme
+    });
+  });
+};

@@ -14,4 +14,5 @@ router.get('/activities', activities.list);
 router.post('/activities', activities.add);
 router.get('/cues', cues.list);
 router.post('/cues', cues.add);
+router.get('/theme/:_id?', themes.show);
 module.exports = router;
