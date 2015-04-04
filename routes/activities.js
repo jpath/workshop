@@ -21,3 +21,12 @@ exports.add = function(req, res, next){
   })
 };
 
+exports.show = function(req, res, next){
+  if(!req.query || !req.query._id) return next(new Error('No id provided'));
+  req.db.activities.findById(req.query._id, function(err, activity) {
+    if(err) return next(err);
+    res.render('activity', {
+      activity: activity
+    });
+  });
+};

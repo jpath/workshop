@@ -6,4 +6,5 @@ block content
   ul
     each activity in activities
       li 
-        = activity.name
+        a(href='/activities?_id=' + activity._id)
+          = activity.name
