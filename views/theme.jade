@@ -3,5 +3,10 @@ extends layout
 block content
   h1= theme.name
   p Illustrate this theme with activities:
+    form
+      select
+        each a in activities
+          option(value=a._id) 
+            =a.name
 
   p Add an activity to this theme:
