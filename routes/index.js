@@ -12,6 +12,7 @@ router.get('/themes', themes.list);
 router.post('/themes', themes.add);
 router.get('/activities', activities.list);
 router.post('/activities', activities.add);
+//router.post('/activities', activities.illustrateTheme);
 router.get('/cues', cues.list);
 router.post('/cues', cues.add);
 router.get('/theme/:_id?', themes.show);

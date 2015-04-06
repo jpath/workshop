@@ -2,11 +2,13 @@ extends layout
 
 block content
   h1= theme.name
-  p Illustrate this theme with activities:
-    form
-      select
+  p Illustrate this theme with an activity:
+    form(id='add-activity-to-theme', method='post', action='/activities')
+      input(type='hidden', name='theme_id', value=theme._id)
+      select(name='_id')
         each a in activities
           option(value=a._id) 
             =a.name
+      input(type='submit', value='Illustrate Theme')
 
   p Add an activity to this theme:
