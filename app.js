@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -20,7 +21,9 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride());                  // simulate DELETE and PUT
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 // Mongo
 var mongo = require('mongoskin');
@@ -31,6 +34,7 @@ app.use(function(req, res, next) {
   req.db.themes = db.collection('themes');
   req.db.activities = db.collection('activities');
   req.db.cues = db.collection('cues');
+  req.db.workshops = db.collection('workshops');
   next();
 });
 

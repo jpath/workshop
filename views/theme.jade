@@ -3,9 +3,9 @@ extends layout
 block content
   h1= theme.name
   p Illustrate this theme with an activity:
-    form(id='add-activity-to-theme', method='post', action='/activities')
+    form(id='add-activity-to-theme', method='post', action='/workshops')
       input(type='hidden', name='theme_id', value=theme._id)
-      select(name='_id')
+      select(name='activity_id')
         each a in activities
           option(value=a._id) 
             =a.name

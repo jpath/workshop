@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  p= workshop._id
+  p Looks like your workshop doesn't have a name:
+    form(id='workshop-name', action='/workshop', method='post')
+      input(type='hidden', name='_method', value='put')
+      input(type='text', name='workshop')
+      input(type='submit', value='Set Workshop Name')
