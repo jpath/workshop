@@ -7,7 +7,6 @@ exports.add = function(req, res, next){
     createTime: new Date(),
   }, function(error, workshop){
     if (error) return next(error);
-    if (!workshop) return next(new Error('Failed to save.'));
     console.info('Added %s with id=%s', workshop.name, workshop._id);
     res.cookie('workshop_id', workshop._id)
     res.redirect('/workshop');
@@ -34,12 +33,15 @@ exports.show = function(req, res, next) {
 };
 
 exports.update = function(req, res, next) {
-  if (!req.body || !req.body.workshop_id) return next(new Error('No data provided.'));
-  req.db.workshops.updateById({_id: req.cookies.workshop_id}, 
+  if (!req.body) return next(new Error('No data provided.'));
+  console.log(req.cookies.workshop_id.toString());
+  if(!req.cookies.workshop_id) return next(new Error('Workshop not set, cannot update.'));
+  req.db.workshops.updateById(req.cookies.workshop_id, 
       {$set: req.body}, 
-      function(err, workshop) {
-        console.log('Updated workshop:' + workshop.name);
-        res.render('workshop',
-          {workshop: workshop})
+      function(err, count) {
+        if(err) return next(err);
+        if(count != 1) return next(new Error('Update failed.'))
+        console.log('Updated workshop' + req.cookies.workshop_id);
+        res.redirect('/workshop')
       });
 };

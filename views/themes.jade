@@ -8,3 +8,7 @@ block content
       li 
         a(href='/theme?_id=' + theme._id)
           = theme.name
+        form(method='post' action='/theme')
+          input(type='hidden', name='_method', value='delete')
+          input(type='hidden', name='_id', value=theme._id)
+          button(type='submit') [X]

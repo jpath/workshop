@@ -19,5 +19,6 @@ router.get('/workshop', workshops.show);
 router.post('/workshops', workshops.add);
 router.put('/workshop', workshops.update);
 router.get('/theme/:_id?', themes.show);
+router.delete('/theme/:_id?', themes.remove);
 router.get('/activity/:_id?', activities.show);
 module.exports = router;

@@ -38,3 +38,11 @@ exports.show = function(req, res, next){
     });
   }); 
 };
+exports.remove = function(req, res, next){
+  if(!req.body || !req.body._id) return next(new Error('No id provided'));
+  req.db.themes.removeById( req.body._id, function(err, result) {
+    if(!err && result == 1) console.log("Deleted theme with id %s", req.body._id);
+    console.log('Remove result: ' + result);
+    res.redirect('themes');
+  });
+};

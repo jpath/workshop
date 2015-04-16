@@ -26,8 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Mongo
-var mongo = require('mongoskin');
-var db = mongo.db("mongodb://localhost:27017/workshop", {native_parser:true});
+var db = require('mongoskin').db("mongodb://localhost:27017/workshop");
+//var db = mongo.db("mongodb://localhost:27017/workshop", {native_parser:true});
 
 app.use(function(req, res, next) {
   req.db = {};
